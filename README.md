@@ -1,3 +1,3 @@
 # parsim-frontend
 
-## Tech Stack: **React.js with tailwind css**
+### Tech Stack: React.js + tailwind css
