@@ -13,6 +13,10 @@ const FeedPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
+  useEffect(() => {
+    document.title = 'Browse - Parsim';
+  });
+
   // Fetch items from backend (mocked with useEffect for now)
   useEffect(() => {
     async function fetchItems() {

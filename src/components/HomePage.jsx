@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
@@ -7,6 +7,10 @@ const HomePage = () => {
   const goToBrowse = () => {
     navigate('/browse');
   };
+
+  useEffect(() => {
+    document.title = 'Home - Parsim';
+  });
 
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
