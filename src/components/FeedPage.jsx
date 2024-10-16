@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ItemCard from './ItemCard'; // Adjust path if necessary
+import ItemCard from './ItemCard';
 
 const FeedPage = () => {
   // Dummy data for items (this will be fetched in a real app)
@@ -82,7 +82,7 @@ const FeedPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Items Feed</h1>
+      <h1 className="text-3xl font-bold mb-4">For You</h1>
 
       {/* Filters */}
       <div className="flex space-x-4 mb-4">
