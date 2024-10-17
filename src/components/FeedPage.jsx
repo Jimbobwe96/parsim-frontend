@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ItemCard from './ItemCard';
+import ListingCard from './ListingCard';
 
 const FeedPage = () => {
   // Dummy data for items (this will be fetched in a real app)
@@ -26,10 +26,14 @@ const FeedPage = () => {
           setTimeout(
             () =>
               resolve([
-                { id: 1, title: 'Vintage Adidas T-shirt', price: 30, condition: 'Used', size:'S', distance: 4, image: 'adidas.jpg', datePosted: '2024-10-01' },
-                { id: 2, title: 'Arcteryx Hat slate gray', price: 50, condition: 'New', size:'M', distance: 0.7, image: 'arcteryx.jpg', datePosted: '2024-10-05' },
-                { id: 3, title: "Levi's 502 Jeans", price: 45, condition: 'Used', size:'32/34', distance: 1.1, image: 'jeans.jpg', datePosted: '2024-10-15' },
-                { id: 4, title: 'Stussy x Irie Hoodie', price: 130, condition: 'Used', size:'L', distance: 2.3, image: 'stussy.jpg', datePosted: '2024-09-30' },
+                // images, title, price, condition, size, distance, sellerName
+                { id: 0, title: 'Carti Opium Wings', price:99, condition: 'Used', size:'XL', distance:12.2, sellerName:'jimbobwe'},
+                { id: 1, title: 'Carti Opium Wings', price:89, condition: 'Used', size:'XL', distance:12.2, sellerName:'jimbobwe'},
+                { id: 2, title: 'Carti Opium Wings', price:79, condition: 'Used', size:'XL', distance:12.2, sellerName:'jimbobwe'},
+                // { id: 1, title: 'Vintage Adidas T-shirt', price: 30, condition: 'Used', size:'S', distance: 4, image: 'adidas.jpg', datePosted: '2024-10-01' },
+                // { id: 2, title: 'Arcteryx Hat slate gray', price: 50, condition: 'New', size:'M', distance: 0.7, image: 'arcteryx.jpg', datePosted: '2024-10-05' },
+                // { id: 3, title: "Levi's 502 Jeans", price: 45, condition: 'Used', size:'32/34', distance: 1.1, image: 'jeans.jpg', datePosted: '2024-10-15' },
+                // { id: 4, title: 'Stussy x Irie Hoodie', price: 130, condition: 'Used', size:'L', distance: 2.3, image: 'stussy.jpg', datePosted: '2024-09-30' },
                 // Add more items
               ]),
             1000
@@ -85,7 +89,8 @@ const FeedPage = () => {
   const paginatedItems = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
-    <div className="container mx-auto p-4">
+    // <div className="container mx-auto px-6 lg:px-12 p-4">
+    <div className="container mx-auto max-w-screen-lg px-4 lg:px-8 p-4">
       <h1 className="text-3xl font-bold mb-4">For You</h1>
 
       {/* Filters */}
@@ -116,7 +121,18 @@ const FeedPage = () => {
       {!loading && !error && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {paginatedItems.map((item) => (
-            <ItemCard key={item.id} item={item} />
+            <ListingCard
+            id={item.id}
+            // images={item.images}
+            images={["/dielit.jpg"]}
+            title={item.title}
+            price={item.price}
+            condition={item.condition}
+            size={item.size}
+            distance={item.distance}
+            sellerName={item.sellerName}
+            />
+            // <ListingCard key={item.id} item={item} />
           ))}
         </div>
       )}
