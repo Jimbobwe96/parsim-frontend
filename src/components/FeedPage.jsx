@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import ListingCard from './ListingCard';
+import React, { useState, useEffect } from "react";
+import ListingCard from "./ListingCard";
 
 const FeedPage = () => {
   // Dummy data for items (this will be fetched in a real app)
   const [items, setItems] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [priceRange, setPriceRange] = useState([0, 1000]);
-  const [sortBy, setSortBy] = useState('datePosted');
+  const [sortBy, setSortBy] = useState("datePosted");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   useEffect(() => {
-    document.title = 'Browse - Parsim';
+    document.title = "Browse - Parsim";
   });
 
   // Fetch items from backend (mocked with useEffect for now)
@@ -27,9 +27,33 @@ const FeedPage = () => {
             () =>
               resolve([
                 // images, title, price, condition, size, distance, sellerName
-                { id: 0, title: 'Carti Opium Wings', price:99, condition: 'Used', size:'XL', distance:12.2, sellerName:'jimbobwe'},
-                { id: 1, title: 'Carti Opium Wings', price:89, condition: 'Used', size:'XL', distance:12.2, sellerName:'jimbobwe'},
-                { id: 2, title: 'Carti Opium Wings', price:79, condition: 'Used', size:'XL', distance:12.2, sellerName:'jimbobwe'},
+                {
+                  id: 0,
+                  title: "Carti Opium Wings",
+                  price: 99,
+                  condition: "Used",
+                  size: "XL",
+                  distance: 12.2,
+                  sellerName: "jimbobwe",
+                },
+                {
+                  id: 1,
+                  title: "Carti Opium Wings",
+                  price: 89,
+                  condition: "Used",
+                  size: "XL",
+                  distance: 12.2,
+                  sellerName: "jimbobwe",
+                },
+                {
+                  id: 2,
+                  title: "Carti Opium Wings",
+                  price: 79,
+                  condition: "Used",
+                  size: "XL",
+                  distance: 12.2,
+                  sellerName: "jimbobwe",
+                },
                 // { id: 1, title: 'Vintage Adidas T-shirt', price: 30, condition: 'Used', size:'S', distance: 4, image: 'adidas.jpg', datePosted: '2024-10-01' },
                 // { id: 2, title: 'Arcteryx Hat slate gray', price: 50, condition: 'New', size:'M', distance: 0.7, image: 'arcteryx.jpg', datePosted: '2024-10-05' },
                 // { id: 3, title: "Levi's 502 Jeans", price: 45, condition: 'Used', size:'32/34', distance: 1.1, image: 'jeans.jpg', datePosted: '2024-10-15' },
@@ -43,7 +67,7 @@ const FeedPage = () => {
         setFilteredItems(response);
         setLoading(false);
       } catch (err) {
-        setError('Failed to load items');
+        setError("Failed to load items");
         setLoading(false);
       }
     }
@@ -63,7 +87,7 @@ const FeedPage = () => {
 
   // Handle price range change
   const handlePriceRangeChange = (event) => {
-    const [min, max] = event.target.value.split('-').map(Number);
+    const [min, max] = event.target.value.split("-").map(Number);
     setPriceRange([min, max]);
   };
 
@@ -76,9 +100,9 @@ const FeedPage = () => {
         item.price <= priceRange[1]
     );
 
-    if (sortBy === 'priceLowHigh') {
+    if (sortBy === "priceLowHigh") {
       updatedItems.sort((a, b) => a.price - b.price);
-    } else if (sortBy === 'priceHighLow') {
+    } else if (sortBy === "priceHighLow") {
       updatedItems.sort((a, b) => b.price - a.price);
     }
 
@@ -86,7 +110,10 @@ const FeedPage = () => {
   }, [searchQuery, priceRange, sortBy, items]);
 
   // Handle pagination
-  const paginatedItems = filteredItems.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const paginatedItems = filteredItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return (
     // <div className="container mx-auto px-6 lg:px-12 p-4">
@@ -102,12 +129,19 @@ const FeedPage = () => {
           placeholder="Search for items"
           className="border p-2 rounded-md"
         />
-        <select value={sortBy} onChange={handleSortChange} className="border p-2 rounded-md">
+        <select
+          value={sortBy}
+          onChange={handleSortChange}
+          className="border p-2 rounded-md"
+        >
           <option value="datePosted">Sort by Date</option>
           <option value="priceLowHigh">Price: Low to High</option>
           <option value="priceHighLow">Price: High to Low</option>
         </select>
-        <select onChange={handlePriceRangeChange} className="border p-2 rounded-md">
+        <select
+          onChange={handlePriceRangeChange}
+          className="border p-2 rounded-md"
+        >
           <option value="0-1000">All Prices</option>
           <option value="0-50">Under $50</option>
           <option value="50-100">$50 - $100</option>
@@ -122,15 +156,15 @@ const FeedPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {paginatedItems.map((item) => (
             <ListingCard
-            id={item.id}
-            // images={item.images}
-            images={["/dielit.jpg"]}
-            title={item.title}
-            price={item.price}
-            condition={item.condition}
-            size={item.size}
-            distance={item.distance}
-            sellerName={item.sellerName}
+              id={item.id}
+              // images={item.images}
+              images={["/dielit.jpg"]}
+              title={item.title}
+              price={item.price}
+              condition={item.condition}
+              size={item.size}
+              distance={item.distance}
+              sellerName={item.sellerName}
             />
             // <ListingCard key={item.id} item={item} />
           ))}
